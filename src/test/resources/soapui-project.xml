@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="2727ba8a-ab14-41b1-a218-ccd67b6bd5e1" activeEnvironment="Default" name="Project 1"
+                    resourceRoot="" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings/>
+    <con:interface xsi:type="con:RestService" id="8db667fe-fa4e-429a-bb87-8db0a0e45234"
+                   wadlVersion="http://wadl.dev.java.net/2009/02" name="https://httpbin.org" type="rest"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:settings/>
+        <con:definitionCache type="TEXT" rootPart=""/>
+        <con:endpoints>
+            <con:endpoint>https://httpbin.org</con:endpoint>
+        </con:endpoints>
+        <con:resource name="Get" path="/get" id="b29bc7bc-efb0-462f-b800-6d349e531ced">
+            <con:settings/>
+            <con:parameters>
+                <con:parameter>
+                    <con:name>param1</con:name>
+                    <con:value/>
+                    <con:style>QUERY</con:style>
+                    <con:default/>
+                    <con:description xsi:nil="true"/>
+                </con:parameter>
+                <con:parameter>
+                    <con:name>param2</con:name>
+                    <con:value/>
+                    <con:style>QUERY</con:style>
+                    <con:default/>
+                    <con:description xsi:nil="true"/>
+                </con:parameter>
+            </con:parameters>
+            <con:method name="Get" id="118a8c80-3054-4c07-ad88-3ece2758a700" method="GET">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:status>200</con:status>
+                    <con:params/>
+                    <con:element xmlns:get="https://httpbin.org/get">get:Response</con:element>
+                </con:representation>
+                <con:request name="Request 1" id="ec7c3811-bf0e-4383-97b6-86cf2f54793f" mediaType="application/json">
+                    <con:settings/>
+                    <con:endpoint>https://httpbin.org</con:endpoint>
+                    <con:request/>
+                    <con:credentials>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:jmsPropertyConfig/>
+                    <con:parameters/>
+                    <con:parameterOrder>
+                        <con:entry>param1</con:entry>
+                        <con:entry>param2</con:entry>
+                    </con:parameterOrder>
+                </con:request>
+            </con:method>
+        </con:resource>
+    </con:interface>
+    <con:testSuite id="fe2d2107-dc07-4458-a704-5aa93291bba0" name="Suite1">
+        <con:settings/>
+        <con:runType>SEQUENTIAL</con:runType>
+        <con:testCase id="f332982d-a062-4da4-9d61-84b0b7d5ecb0" failOnError="true" failTestCaseOnErrors="true"
+                      keepSession="false" maxResults="0" name="Case1" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="restrequest" name="step1" id="3a4645ab-5aee-4612-a0e7-885460a5aa74">
+                <con:settings/>
+                <con:config service="https://httpbin.org" methodName="Get" resourcePath="/get"
+                            xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:restRequest name="step1" id="23905303-783d-4cda-95fb-aa8d5240d2b1"
+                                     mediaType="application/json">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>https://httpbin.org</con:endpoint>
+                        <con:request/>
+                        <con:originalUri>https://httpbin.org/get</con:originalUri>
+                        <con:assertion type="JsonPath Match" id="252bbfa9-4cc7-4b38-a089-7af01e5b7866"
+                                       name="JsonPath Match">
+                            <con:configuration>
+                                <path>$.args.param1</path>
+                                <content>value1</content>
+                                <allowWildcards>false</allowWildcards>
+                                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                                <ignoreComments>false</ignoreComments>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="JsonPath Match" id="4f6f2488-26af-4b38-aad0-8868808f2494"
+                                       name="JsonPath Match 1">
+                            <con:configuration>
+                                <path>$.args.param2</path>
+                                <content>value2</content>
+                                <allowWildcards>false</allowWildcards>
+                                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                                <ignoreComments>false</ignoreComments>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:parameters>
+                            <con:entry key="param1" value="value1"/>
+                            <con:entry key="param2" value="value2"/>
+                        </con:parameters>
+                        <con:parameterOrder>
+                            <con:entry>param1</con:entry>
+                            <con:entry>param2</con:entry>
+                        </con:parameterOrder>
+                    </con:restRequest>
+                </con:config>
+            </con:testStep>
+            <con:properties/>
+        </con:testCase>
+        <con:properties/>
+    </con:testSuite>
+    <con:properties/>
+    <con:wssContainer/>
+    <con:oAuth2ProfileContainer/>
+    <con:sensitiveInformation/>
+</con:soapui-project>
